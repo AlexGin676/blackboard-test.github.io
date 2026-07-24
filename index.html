@@ -3,12 +3,18 @@
 <head>
 	<title>govorun</title>
 	<style>
-		body {margin: 0; padding: 0; height: 100%; background-color: rgba(0, 0, 0, 0.5);}
+		body {margin: 0; padding: 0; height: 100%;}
+		div {margin: 0; padding: 0; height: 100px; width: 100px; background-color: red; position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);}
 		h1 {color: green; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);}
 	</style>
 </head>
 	<body>
 		
+		<div class="dropFileZone">
+			<h1>Drop Files Here</h1>
+					
+
+		</div>
 
 	<script>
 		const dropFileZone = document.querySelector('body')
@@ -27,7 +33,7 @@
 		
 		dropFileZone.addEventListener("drop", (e) => {
 			e.preventDefault();
-			console.log("dragenter")
+			console.log("drop")
 			const files = e.dataTransfer.files
 			if(files.length > 0) {
 			
