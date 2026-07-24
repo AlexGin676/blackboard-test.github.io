@@ -8,8 +8,7 @@
 	</style>
 </head>
 	<body>
-		<h1>DRAG AND DROP</h1>
-
+		
 
 	<script>
 		const dropFileZone = document.querySelector('body')
@@ -28,6 +27,7 @@
 		
 		dropFileZone.addEventListener("drop", (e) => {
 			e.preventDefault();
+			console.log("dragenter")
 			const files = e.dataTransfer.files
 			if(files.length > 0) {
 			
