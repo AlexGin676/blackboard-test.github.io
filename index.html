@@ -1,1 +1,42 @@
-<h1>HOWDY HO!</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>govorun</title>
+	<style>
+		body {margin: 0; padding: 0; height: 100%; background-color: rgba(0, 0, 0, 0.5);}
+		h1 {color: green; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);}
+	</style>
+</head>
+	<body>
+		<h1>DRAG AND DROP</h1>
+
+
+	<script>
+		const dropFileZone = document.querySelector('body')
+		
+		document.addEventListener('dragover', (e) => {
+			e.preventDefault();
+		});
+		document.addEventListener('drop', (e) => {
+			e.preventDefault();
+			console.log(e.dataTransfer.files)
+		});
+
+		dropFileZone.addEventListener('dragenter', () => {
+			console.log("dragenter")
+		})
+		
+		dropFileZone.addEventListener("drop", (e) => {
+			e.preventDefault();
+			const files = e.dataTransfer.files
+			if(files.length > 0) {
+			
+			}
+		});
+
+	</script>
+
+
+
+	</body>
+</html>
