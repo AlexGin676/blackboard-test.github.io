@@ -3,29 +3,34 @@
 <head>
 	<title>govorun</title>
 	<style>
-		body {margin: 0; padding: 0; height: 100%;}
-		div {margin: 0; padding: 0; height: 100px; width: 100px; background-color: red; position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);}
-		h1 {color: green; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);}
+		body {margin: 0; padding: 0; height: 100%; background-color: rgba(84, 82, 82, 1);}
+		div { position: absolute; width: 100vw; height: 100vh; top:0; left: 0; background-color: rgba(242, 228, 228, 1); display: flex; align-items: center; justify-content: center;}
+		form { width: 100px height: 100px; top:0; left: 0; background-color: rgba(202, 228, 228, 1);}
+		h1 { color: green;}
 	</style>
 </head>
 	<body>
 		
-		<div class="dropFileZone">
+		<div>
 			<h1>Drop Files Here</h1>
-					
-
+			<form>
+				<input class="form-upload__input" id="uploadForm_File" type="file" name="file_name">
+			</form>
 		</div>
 
 	<script>
-		const dropFileZone = document.querySelector('body')
+		const dropFileZone = document.querySelector('body');
+		const uploadUrl = "/unicorns";
+		const uploadInput = document.querySelector(".form-upload__input");
 		
 		document.addEventListener('dragover', (e) => {
 			e.preventDefault();
 		});
 		document.addEventListener('drop', (e) => {
 			e.preventDefault();
-			console.log(e.dataTransfer.files)
 		});
+		
+
 
 		dropFileZone.addEventListener('dragenter', () => {
 			console.log("dragenter")
@@ -34,12 +39,31 @@
 		dropFileZone.addEventListener("drop", (e) => {
 			e.preventDefault();
 			console.log("drop")
-			const files = e.dataTransfer.files
-			if(files.length > 0) {
-			
-			}
-		});
+			uploadInput.files = e.dataTransfer.files
+			const files = uploadInput.files
+			console.log("files have been transferred", files)
 
+		const dropZoneData = new FormData();
+
+		const xhr = new XMLHttpRequest();
+
+		dropZoneData.append("file", files);
+
+		xhr.open("POST", uploadUrl, true);
+
+		xhr.send(dropZoneData);
+
+			xhr.onload = function () {
+ 				if (xhr.status == 200) {
+					console.log("Всё загружено");
+				} else {
+       					console.log("Ошибка загрузки");
+      				}
+      				// скрываем элемент
+     				HTMLElement.style.display = "none";
+			};
+
+		});
 	</script>
 
 
